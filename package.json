@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+ssh://git@github.com/DoubleDor/mjml-serve.git"
   },
+  "bin": {
+    "mjml-serve": "index.js"
+  },
   "keywords": [
     "mjml",
     "serve",

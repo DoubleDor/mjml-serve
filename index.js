@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 /* index.js -- main script file for mjml-server
  *
  * Copyright (C) 2016 Dor Technologies
