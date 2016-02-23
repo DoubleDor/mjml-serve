@@ -1,0 +1,28 @@
+{
+  "name": "mjml-serve",
+  "version": "0.0.1",
+  "description": "Serves mjml files for development",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/DoubleDor/mjml-serve.git"
+  },
+  "keywords": [
+    "mjml",
+    "serve",
+    "express"
+  ],
+  "author": "Mike Lyons <mdl0394@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/DoubleDor/mjml-serve/issues"
+  },
+  "homepage": "https://github.com/DoubleDor/mjml-serve#readme",
+  "dependencies": {
+    "express": "^4.13.4",
+    "mjml": "^1.2.1"
+  }
+}
