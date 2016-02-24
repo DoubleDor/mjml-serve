@@ -19,7 +19,6 @@ var app = express();
 var base_dir = process.cwd();
 
 if( process.argv.length === 3 ) {
-    console.log( process.argv );
     if( path.isAbsolute( process.argv[ 2 ] ) ) {
         base_dir = process.argv[ 2 ];
     } else {
