@@ -15,7 +15,7 @@ npm install -g mjml-serve
 To begin hosting files create an mjml file in your current directory.
 
 ```
-echo "<mj-body><mj-content><mj-text>Hello World</mj-text></mj-content></mj-body>" > example.mjml
+echo "<mj-body><mj-section><mj-column><mj-text>Hello World</mj-text></mj-column></mj-section></mj-body>" > example.mjml
 ```
 
 Then run the server
