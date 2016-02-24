@@ -25,3 +25,15 @@ mjml-serve
 ```
 
 And open your browser to http://localhost:5432/example.mjml
+
+You can also specify a directory for the server to look for mjml files for
+
+```
+mjml-serve relative/path/to/dir/
+```
+
+or
+
+```
+mjml-serve /absolute/path/to/dir/
+```
