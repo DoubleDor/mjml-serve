@@ -1,6 +1,6 @@
 {
   "name": "mjml-serve",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Serves mjml files for development",
   "main": "index.js",
   "scripts": {
