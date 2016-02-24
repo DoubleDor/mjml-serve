@@ -17,7 +17,7 @@ var express = require( 'express' ),
 var app = express();
 
 app.get( '/:filename', function( req, res ) {
-    var mjml_file = fs.readFileSync( path.resolve( __dirname, req.params.filename ) ).toString();
+    var mjml_file = fs.readFileSync( path.resolve( process.cwd(), req.params.filename ) ).toString();
     var html_file = mjml.mjml2html( mjml_file );
     res.send( html_file );
 } );
