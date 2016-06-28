@@ -12,13 +12,15 @@ var fs = require( 'fs' ),
     path = require( 'path' );
 
 var express = require( 'express' ),
-    mjml = require( 'mjml' );
+    mjml = require( 'mjml' ),
+    Handlebars = require( 'handlebars' );
 
 var app = express();
 
 var base_dir = process.cwd();
+var data_file = null;
 
-if( process.argv.length === 3 ) {
+if( process.argv.length >= 3 ) {
     if( path.isAbsolute( process.argv[ 2 ] ) ) {
         base_dir = process.argv[ 2 ];
     } else {
@@ -26,9 +28,27 @@ if( process.argv.length === 3 ) {
     }
 }
 
+if( process.argv.length >= 4 ) {
+    if( path.isAbsolute( process.argv[ 2 ] ) ) {
+        data_file = process.argv[ 3 ];
+    } else {
+        data_file = path.join( process.cwd(), process.argv[ 3 ] );
+    }
+}
+
 app.get( '/:filename', function( req, res ) {
     var mjml_file = fs.readFileSync( path.resolve( base_dir, req.params.filename ) ).toString();
     var html_file = mjml.mjml2html( mjml_file );
+
+    // Handlebars!
+    if( data_file ) {
+        var data_raw = fs.readFileSync( data_file ).toString();
+        var data = JSON.parse( data_raw );
+
+        var email_template = Handlebars.compile( html_file );
+        html_file = email_template( data );
+    }
+
     res.send( html_file );
 } );
 

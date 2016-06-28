@@ -26,6 +26,7 @@
   "homepage": "https://github.com/DoubleDor/mjml-serve#readme",
   "dependencies": {
     "express": "^4.13.4",
+    "handlebars": "^4.0.5",
     "mjml": "^1.2.1"
   }
 }
