@@ -36,18 +36,32 @@ if( process.argv.length >= 4 ) {
     }
 }
 
+Handlebars.registerHelper( "math", function( lvalue, operator, rvalue, options ) {
+    lvalue = parseFloat( lvalue );
+    rvalue = parseFloat( rvalue );
+        
+    return {
+        "+": lvalue + rvalue,
+        "-": lvalue - rvalue,
+        "*": lvalue * rvalue,
+        "/": lvalue / rvalue,
+        "%": lvalue % rvalue
+    }[ operator ];
+});
+
 app.get( '/:filename', function( req, res ) {
     var mjml_file = fs.readFileSync( path.resolve( base_dir, req.params.filename ) ).toString();
-    var html_file = mjml.mjml2html( mjml_file );
 
     // Handlebars!
     if( data_file ) {
         var data_raw = fs.readFileSync( data_file ).toString();
         var data = JSON.parse( data_raw );
 
-        var email_template = Handlebars.compile( html_file );
-        html_file = email_template( data );
+        var email_template = Handlebars.compile( mjml_file );
+        mjml_file = email_template( data );
     }
+
+    var html_file = mjml.mjml2html( mjml_file );
 
     res.send( html_file );
 } );
