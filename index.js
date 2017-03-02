@@ -36,18 +36,44 @@ if( process.argv.length >= 4 ) {
     }
 }
 
-Handlebars.registerHelper( "math", function( lvalue, operator, rvalue, options ) {
+Handlebars.registerHelper( 'math', function( lvalue, operator, rvalue, options ) {
     lvalue = parseFloat( lvalue );
     rvalue = parseFloat( rvalue );
-        
+
     return {
-        "+": lvalue + rvalue,
-        "-": lvalue - rvalue,
-        "*": lvalue * rvalue,
-        "/": lvalue / rvalue,
-        "%": lvalue % rvalue
+         '+': lvalue + rvalue,
+         '-': lvalue - rvalue,
+         '*': lvalue * rvalue,
+         '/': lvalue / rvalue,
+         '%': lvalue % rvalue
     }[ operator ];
-});
+} );
+
+Handlebars.registerHelper( 'pluralize', function( number, singular, plural ) {
+    if ( number === 1 )
+        return singular;
+    else
+        return ( typeof plural === 'string' ? plural : singular + 's' );
+} );
+
+Handlebars.registerHelper( 'formatMoney', function( stripe_usd ) {
+    if( stripe_usd % 100 === 0 ) return '' + ( stripe_usd / 100 );
+    return ( stripe_usd / 100 ).toFixed( 2 );
+} );
+
+var getEmail = function( email_name, data ) {
+    // Get mjml
+    var email_path = path.join( __dirname, 'designs', email_name + '.mjml' );
+    var email_mjml = fs.readFileSync( email_path ).toString();
+
+    // Use handlebars for templates
+    var email_template = Handlebars.compile( email_mjml );
+    var email_mjml_handlebarred = email_template( data );
+
+    var email_html = mjml.mjml2html( email_mjml_handlebarred );
+
+    return email_html;
+};
 
 app.get( '/:filename', function( req, res ) {
     var mjml_file = fs.readFileSync( path.resolve( base_dir, req.params.filename ) ).toString();
