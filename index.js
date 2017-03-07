@@ -51,7 +51,7 @@ Handlebars.registerHelper( 'math', function( lvalue, operator, rvalue, options )
 } );
 
 Handlebars.registerHelper( 'formatDate', function( date ) {
-    return moment( new Date( date ) ).format( 'MM/DD/YYY' );
+    return moment( new Date( date ) ).format( 'MM/DD/YYYY' );
 } );
 
 Handlebars.registerHelper( 'pluralize', function( number, singular, plural ) {
