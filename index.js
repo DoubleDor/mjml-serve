@@ -13,7 +13,8 @@ var fs = require( 'fs' ),
 
 var express = require( 'express' ),
     mjml = require( 'mjml' ),
-    Handlebars = require( 'handlebars' );
+    Handlebars = require( 'handlebars' ),
+    moment = require( 'moment' );
 
 var app = express();
 
@@ -47,6 +48,10 @@ Handlebars.registerHelper( 'math', function( lvalue, operator, rvalue, options )
          '/': lvalue / rvalue,
          '%': lvalue % rvalue
     }[ operator ];
+} );
+
+Handlebars.registerHelper( 'formatDate', function( date ) {
+    return moment( new Date( date ) ).format( 'MM/DD/YYY' );
 } );
 
 Handlebars.registerHelper( 'pluralize', function( number, singular, plural ) {
